@@ -18,7 +18,7 @@ def average_pooling(img, G=8):
 
 img = cv2.imread("assert/imori.jpg").astype(np.float32)
 H, W, C = img.shape
-print(H, W, C)
+#print(H, W, C)
 img2 = average_pooling(img, 8).astype(np.uint8)
 
 cv2.imshow("imori", img2)
