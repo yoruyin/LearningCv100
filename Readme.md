@@ -120,3 +120,90 @@ $$
 
 直接取 $8-$临近的中值输出，可以用来降噪。
 
+##### Q11 均值滤波
+
+直接取 $8-$临近的均值输出。
+
+##### Q12 Motion Filter
+
+使用$3\times3$的Motion Filter进行滤波。
+
+Motion Filter取对角线方向的像素的平均值，像如下矩阵：
+$$
+K=\left[ \begin{matrix} \frac{1}{3}&0&0\\ 0&\frac{1}{3}&0\\ 0 & 0& \frac{1}{3} \end{matrix} \right]
+$$
+
+##### Q13 Max-Min 滤波器
+
+使用网格内的最大值和最小值的差值对网格内像素重新赋值，用来**边缘检测**。
+
+边缘检测用于检测图像中的线，这种操作称为**特征提取**。
+
+边缘检测通常在**灰度图像**上进行。
+
+##### Q14 差分滤波器(Differential Filter)
+
+纵向： 
+$$
+K=\left[ \begin{matrix} 0&-1&0\\ 0&1&0\\ 0&0&0 \end{matrix} \right]
+$$
+横向： 
+$$
+K=\left[ \begin{matrix} 0&0&0\\ -1&1&0\\ 0&0&0 \end{matrix} \right]
+$$
+
+##### Q15 Sobel滤波器
+
+Sobel滤波器可以提取特定方向（纵向或横向）的边缘，滤波器按下式定义：
+
+纵向： 
+$$
+K=\left[ \begin{matrix} 1&2&1\\ 0&0&0\\ -1&-2&-1 \end{matrix} \right]
+$$
+
+
+横向： 
+$$
+K=\left[ \begin{matrix} 1&0&-1\\ 2&0&-2\\ 1&0&-1 \end{matrix} \right]
+$$
+
+
+##### Q16 Prewitt滤波器
+
+Prewitt滤波器是用于边缘检测的一种滤波器，使用下式定义：
+
+纵向： 
+$$
+K=\left[ \begin{matrix} -1&-1&-1\\ 0&0&0\\ 1&1&1 \end{matrix} \right]
+$$
+横向： 
+$$
+K=\left[ \begin{matrix} -1&0&1\\ -1&0&1\\ -1&0&1 \end{matrix} \right]
+$$
+
+##### Q17 Laplacian滤波器
+
+Laplacian滤波器是对图像亮度进行二次微分从而**检测边缘**的滤波器。
+
+卷积核是下面这样的： 
+$$
+K= \left[ \begin{matrix} 0&1&0\\ 1&-4&1\\ 0&1&0 \end{matrix} \right]
+$$
+ 
+
+##### Q18 Emboss滤波器
+
+Emboss滤波器可以使物体轮廓更加清晰，按照以下式子定义： 
+$$
+K= \left[ \begin{matrix} -2&-1&0\\ -1&1&1\\ 0&1&2 \end{matrix} \right]
+$$
+ 
+
+##### Q19 LoG滤波器
+
+LoG即高斯-拉普拉斯（Laplacian of Gaussian）的缩写，使用高斯滤波器使图像平滑化之后再使用拉普拉斯滤波器使图像的轮廓更加清晰。用于**边缘检测**。
+
+LoG 滤波器使用以下式子定义： 
+$$
+\text{LoG}(x,y)=\frac{x^2 + y^2 - s^2}{2 \ \pi \ s^6} \ e^{-\frac{x^2+y^2}{2\ s^2}}
+$$
