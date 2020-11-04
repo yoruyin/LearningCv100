@@ -232,6 +232,6 @@ Canny边缘检测法的理论介绍。
 
 效果：
 
-<img src="D:\tf2\github\LearningCv100\assert\Q43.jpg" style="zoom:25%;" />
+<img src="https://github.com/yoruyin/LearningCv100/blob/master/assert/Q43.jpg" style="zoom:25%;" />
 
-<img src="D:\tf2\github\LearningCv100\assert\Q43result.jpg" style="zoom:25%;" />
+<img src="https://github.com/yoruyin/LearningCv100/blob/master/assert/Q43result.jpg" style="zoom:25%;" />
