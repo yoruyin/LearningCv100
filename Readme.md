@@ -189,7 +189,7 @@ Laplacian滤波器是对图像亮度进行二次微分从而**检测边缘**的�
 $$
 K= \left[ \begin{matrix} 0&1&0\\ 1&-4&1\\ 0&1&0 \end{matrix} \right]
 $$
- 
+
 
 ##### Q18 Emboss滤波器
 
@@ -197,7 +197,7 @@ Emboss滤波器可以使物体轮廓更加清晰，按照以下式子定义：
 $$
 K= \left[ \begin{matrix} -2&-1&0\\ -1&1&1\\ 0&1&2 \end{matrix} \right]
 $$
- 
+
 
 ##### Q19 LoG滤波器
 
@@ -207,3 +207,31 @@ LoG 滤波器使用以下式子定义：
 $$
 \text{LoG}(x,y)=\frac{x^2 + y^2 - s^2}{2 \ \pi \ s^6} \ e^{-\frac{x^2+y^2}{2\ s^2}}
 $$
+
+##### Q41-43 Canny边缘检测
+
+Canny边缘检测法的理论介绍。
+
+1. 使用高斯滤波；
+2. 在 $x$ 方向和 $y$ 方向上使用Sobel滤波器，在此之上求出边缘的强度和边缘的梯度；
+3. 对梯度幅值进行非极大值抑制（Non-maximum suppression）来使边缘变得更细；
+4. 使用滞后阈值来对阈值进行处理。
+
+
+
+按照以下步骤进行处理：
+
+1. 将图像进行灰度化处理；
+2. 将图像进行高斯滤波（$5\times5$，$s=1.4$）；
+3. 在$x$方向和$y$方向上使用Sobel滤波器，在此之上求出边缘梯度$f_x$和$f_y$。边缘梯度可以按照下式求得： $$ \text{edge}=\sqrt{{f_x}^2+{f_x}^2}\ \text{tan}=\arctan(\frac{f_y}{f_x}) $$
+4. 使用下面的公式将梯度方向量化： $$ \text{angle}=\left\{\begin{aligned} &0  (\text{if}\quad -0.4142 < \tan \leq 0.4142)\\ &45  (\text{if}\quad 0.4142 < \tan < 2.4142)\\ &90 (\text{if}\quad |\tan| \geq 2.4142)\\ &135 (\text{if}\quad -2.4142 < \tan \leq -0.4142) \end{aligned}\right. $$
+5. 我们比较我们我们所关注的地方梯度的法线方向邻接的三个像素点的梯度幅值，如果该点的梯度值不比其它两个像素大，那么这个地方的值设置为0。
+6. 在这里我们将通过设置高阈值（HT：high threshold）和低阈值（LT：low threshold）来将梯度幅值二值化。
+
+
+
+效果：
+
+<img src="D:\tf2\github\LearningCv100\assert\Q43.jpg" style="zoom:25%;" />
+
+<img src="D:\tf2\github\LearningCv100\assert\Q43result.jpg" style="zoom:25%;" />
